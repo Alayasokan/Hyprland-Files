@@ -1,0 +1,108 @@
+
+{
+    "layer": "top",
+    "margin-top": 15,
+    "width": 1900,
+    "modules-left": ["clock", "cpu", "memory"],
+    "modules-center": ["custom/theme", "hyprland/workspaces", "custom/notification"],
+    "modules-right": ["network", "bluetooth", "pulseaudio","battery", "custom/power"],
+    "battery": {
+        "format": " {icon} {capacity}%   ",
+        "format-icons": [" "," "," "," "," "]
+    },
+    "clock": {
+        "format": " 󰥔  {:%H:%M}   ",
+        "format-alt": "   {:%a, %d. %b %H:%M}   "
+    },
+    "bluetooth": {
+    "format": "",
+    "format-disabled": "",
+    "format-connected": " {num_connections}",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "kitty --title=bluetui -e bluetui"
+    },
+    "cpu": {
+        "interval": 10,
+        "format": " {}%",
+        "max-length": 10,
+        "on-click": "kitty --title=btop -e btop"
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {percentage}%",
+        "tooltip-format": "{used:0.1f}G/{total:0.1f}G used",
+        "on-click": "kitty --title=htop -e htop"
+    },
+    "pulseaudio": {
+        "format": " {icon}  {volume}%   ",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "phone": "",
+            "phone-muted": "",
+            "portable": "",
+            "car": "",
+            "default": ["","",""]
+        },
+        "scroll-step": 1,
+        "on-click": "pavucontrol",
+        "ignored-sinks": ["Easy Effects Sink"]
+    },
+    "network": {
+        "format": "",
+        "format-wifi": "",
+        "format-ethernet": "",
+        "format-disconnected": "󰤭",
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "󰖪",
+        "max-length": 50,
+        "on-click": "nmrs"
+    },
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "persistent-workspaces": {"*": 5}
+    },
+
+    "custom/notification": {
+        "tooltip": true,
+        "format": "<span size='16pt'> {icon} </span>",
+        "format-icons": {
+            "notification": "󱅫",
+            "none": "󰂜",
+            "dnd-notification": "󰂠",
+            "dnd-none": "󰪓",
+            "inhibited-notification": "󰂛",
+            "inhibited-none": " 󰪑 ",
+            "dnd-inhibited-notification": "󰂛",
+            "dnd-inhibited-none": "󰪑"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "custom/power": {
+      "format": "   ⏻   ",
+      "return-type": "json",
+      "on-click": "wlogout",
+      "tooltip": false
+    },
+
+    "custom/theme": {
+        "format": " 󰸌 ",
+        "return-type": "json",
+        "on-click": "~/.config/lthemes/lthemes.py select",
+        "tooltip": false
+    }
+
+}
+

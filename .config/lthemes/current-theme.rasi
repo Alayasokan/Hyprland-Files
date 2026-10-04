@@ -1,0 +1,5 @@
+@import "/home/alayak/.config/lthemes/everforest/colors.rasi"
+
+imagebox {
+    background-image: url("/home/alayak/.config/lthemes/everforest/wallpapers/flowers.png");
+}
